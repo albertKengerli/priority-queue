@@ -76,6 +76,7 @@ class Node {
       
       if (grandParent != null) grandParent.appendChild(this);
     }
+    return this;
 	}
 }
 

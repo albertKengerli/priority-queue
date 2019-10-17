@@ -152,13 +152,13 @@ describe('MaxHeap', () => {
 			];
 		});
 
-		it('shifts node up until heap property is valid', () => {
+		it.only('shifts node up until heap property is valid', () => {
 			const newRoot = h.root.left.left;
 			h.shiftNodeUp(h.root.left.left);
 			expect(h.root).to.equal(newRoot);
 		});
 
-		it('maintants parentNodes in correct state', () => {
+		it.only('maintants parentNodes in correct state', () => {
 			const correctParentNodesOrderAfterShiftUp = [
 				h.root,
 				h.root.right,
@@ -172,7 +172,7 @@ describe('MaxHeap', () => {
 			expect(h.parentNodes[2]).to.equal(correctParentNodesOrderAfterShiftUp[2]);
 		});
 
-		it('calls Node.swapWithParent', () => {
+		it.only('calls Node.swapWithParent', () => {
 			const nodeToShiftUp = h.root.left.left;
 			sinon.spy(nodeToShiftUp, 'swapWithParent');
 
@@ -181,7 +181,7 @@ describe('MaxHeap', () => {
 			expect(nodeToShiftUp.swapWithParent).to.have.been.calledTwice;
 		});
 
-		it('calls itself recursively', () => {
+		it.only('calls itself recursively', () => {
 			const nodeToShiftUp = h.root.left.left;
 			sinon.spy(h, 'shiftNodeUp');
 
