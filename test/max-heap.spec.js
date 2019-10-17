@@ -361,7 +361,7 @@ describe('MaxHeap', () => {
 
 	});
 
-	describe('#shiftNodeDown', () => {
+	describe.only('#shiftNodeDown', () => {
 		let h;
 
 		beforeEach(() => {
