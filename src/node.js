@@ -39,23 +39,44 @@ class Node {
 
 	swapWithParent() {
 		if (this.parent != null) {
-      let prevParent = this.parent.parent;
+      let grandParent = this.parent.parent;
+      let oldParent = this.parent;
+      let brother = new Node ();
       let [prevChildLeft, prevChildRight] = [this.left, this.right];
-      [prevChildLeft.parent, prevChildRight.parent] = this.parent; 
+      
+      switch (this){
+        case this.parent.left:
+          if (this.parent.right != null){
+            brother = this.parent.right;
+            brother.remove();
+          }
+          break;
+        case this.parent.right:
+          if (this.parent.left != null){
+            brother = this.parent.left;
+            brother.remove();
+          }
+          break;
+      }
+      this.remove();
+      
+      if (prevChildRight != null) {
+        prevChildRight.remove();
+        oldParent.appendChild(prevChildRight);
+      }
+
+      if (prevChildLeft != null) {
+        prevChildLeft.remove();
+        oldParent.appendChild(prevChildLeft);
+      }      
+
+      oldParent.remove();
+      this.appendChild(oldParent);
+      if (brother != null) this.appendChild(brother);
+      
+      if (grandParent != null) grandParent.appendChild(this);
     }
 	}
 }
 
-let p = new Node(1,1);
-let c = new Node (2,2);
-
-p.appendChild(c);
-
-console.log(p);
-console.log(c);
-
-
-c.swapWithParent();
-console.log(p);
-console.log(c);
 module.exports = Node;
